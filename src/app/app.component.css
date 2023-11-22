@@ -1,0 +1,81 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(109, 53, 212);
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    height: 75px;
+}
+
+nav .logo img {
+    height: 90%;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav .logo img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+nav .options {
+    display: flex;
+    gap: 20px;
+    width: 100vw;
+    color: #282828;
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+}
+
+nav .options .text { margin-bottom: 10px; }
+
+nav .options .text:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+nav select {
+    width: 25vw;
+    padding: 5px;
+    background: rgb(40, 40, 40, .6);
+    border-width: 0px;
+    color: rgb(230, 230, 230);
+}
+
+select option {
+    background-color: #282828;
+}
+
+.mat-mdc-fab, .mat-mdc-mini-fab {
+    background-color: rgb(109, 53, 212);
+}
+
+.filter {
+    z-index: 5;
+}
+
+.filter button {
+    position: fixed;
+    bottom: 2vh;
+    right: 2vh;
+}
+
+.filter_screen {
+    position: fixed;
+    bottom: 10vh;
+    right: 2vh;
+    background-color: rgb(109, 53, 212);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 75vh;
+    max-width: 50vw;
+    overflow: auto;
+}
+
+.filter_screen h2 {
+    margin-left: 20px;
+}
