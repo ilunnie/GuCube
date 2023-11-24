@@ -1,17 +1,17 @@
 @if(isLogged) {
 <nav>
     <div class="logo">
-        <img src="assets/images/GuCubeLogo.svg" />
+        <img src="assets/images/GuCubeBlackLogo.svg" />
     </div>
     <div class="options">
         @if(isAdm) {
-        <div class="text">
+        <div class="text" (click)="navigateTo('/manage')">
             <h3>Gerenciar</h3>
         </div>
-        <div class="text">
+        <div class="text" (click)="navigateTo('/sale')">
             <h3>Promoções</h3>
         </div>
-        <div class="text">
+        <div class="text" (click)="navigateTo('/totem')">
             <h3>Totem</h3>
         </div>
         }
@@ -22,14 +22,22 @@
             </button>
             @if(!showFilter) {
             <div class="filter_screen">
-                <div style="padding: 15px;">
+                <div class="filter_Location">
                     <h2>Location</h2>
-                    <select>
-                        <option value="" selected>-- country --</option>
+                    <select [(ngModel)]="selectedCountry">
+                        <option value="">-- país --</option>
                         <option *ngFor="let country of countries" [value]="country">{{country}}</option>
                     </select>
-                    <select>
-                        <option value="" selected>-- state --</option>
+                    <select [disabled]="!selectedCountry">
+                        <option value="">-- estado --</option>
+                        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                    </select>
+                    <select [disabled]="!selectedCountry">
+                        <option value="">-- cidade --</option>
+                        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                    </select>
+                    <select [disabled]="!selectedCountry">
+                        <option value="">-- franquia --</option>
                         <option *ngFor="let country of countries" [value]="country">{{country}}</option>
                     </select>
                 </div>

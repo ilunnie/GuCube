@@ -1,0 +1,24 @@
+<div class="content">
+    <h1 style="font-size: xxx-large;">Gerenciar</h1>
+    <div class="list col-3 col-md-2 col-sm-1">
+        @for (item of list; track item.id) {
+        @if (showUnavailable || item.available) {
+            <div class="card">
+                <div class="thumb">
+                    <img [src]="item.image">
+                </div>
+                <div class="infos">
+                    <div class="infos_main">
+                        <div style="display: flex; flex-direction: column;">
+                            <h2 style="color: #b8b8b8;">{{item.name}}</h2>
+                            <div style="display: inline;">
+                                <h3>R$ </h3>
+                                <input type="number" [value]="item.price.toFixed(2)" (change)="modPrice($event, item.id)" class="invisible_input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }}
+    </div>
+</div>

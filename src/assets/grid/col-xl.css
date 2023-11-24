@@ -1,0 +1,50 @@
+@media screen {
+    .col-xl-1 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .col-xl-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .col-xl-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .col-xl-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .col-xl-5 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .col-xl-6 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .col-xl-7 {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .col-xl-8 {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+    }
+    .col-xl-9 {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+    }
+    .col-xl-10 {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .col-xl-11 {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+    }
+    .col-xl-12 {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
