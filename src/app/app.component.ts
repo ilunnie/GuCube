@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -14,16 +14,31 @@ import { MatSelectModule } from '@angular/material/select';
     styleUrls: ['./app.component.css'],
     imports: [CommonModule, RouterOutlet, FormsModule, MatIconModule, MatButtonModule, MatSelectModule]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'GuCube';
-  isLogged = true;
-  isAdm = true;
+  isAdm = false;
   showFilter = false;
 
   constructor(private router: Router) { }
 
+  ngOnInit() {
+    if (this.getJwt() == null)
+      this.goToLogin()
+  }
+
   countries = ['Brasil', 'Argentina', 'Chile'];
   selectedCountry: string = '';
+
+  getJwt() {
+    if (typeof sessionStorage !== 'undefined') {
+      return sessionStorage.getItem('jwt');
+    }
+    return null
+  }
+
+  goToLogin() {
+    this.router.navigate(['login'])
+  }
 
   clickFilter() {
     this.showFilter = !this.showFilter;

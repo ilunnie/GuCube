@@ -1,4 +1,4 @@
-@if(isLogged) {
+@if(getJwt() != null) {
 <nav>
     <div class="logo">
         <img src="assets/images/GuCubeBlackLogo.svg" />
@@ -20,7 +20,7 @@
             <button mat-fab (click)="clickFilter()">
                 <mat-icon>filter_list</mat-icon>
             </button>
-            @if(!showFilter) {
+            @if(showFilter) {
             <div class="filter_screen">
                 <div class="filter_Location">
                     <h2>Location</h2>
