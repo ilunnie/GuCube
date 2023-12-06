@@ -5,30 +5,74 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from '../user.service';
+import { ConfirmPassword } from '../MyValidators/isEqual';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    CommonModule,
+    MatButtonModule,
+    MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
     MatFormFieldModule,
-    MatStepperModule,
-    MatButtonModule
+    MatInputModule,
+    CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required, Validators.minLength(5)],
+    loginCtrl: ['', Validators.minLength(5)],
   });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
+  loginFormGroup = this._formBuilder.group({
+    passwordCtrl: ['', Validators.required],
   });
-  isLinear = true;
+  signupFormGroup = this._formBuilder.group({
+    passwordCtrl: ['', Validators.minLength(5)],
+    confirmCtrl: ['', Validators.required],
+    nameCtrl: ['', Validators.required, Validators.pattern('[\\p{L} \u00C0-\u017F]+')],
+  }, { validators: ConfirmPassword });
+  
+  isNew = false;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private user: UserService,
+    private _formBuilder: FormBuilder) {}
+
+  verifyLogin() {
+    this.user.login({
+      login: this.firstFormGroup.value.loginCtrl!,
+      password: "",
+      name: ""
+    }, (result: any) => {
+      if (result.status == 404) {
+        this.isNew = true;
+      } else {
+        this.isNew = false;
+      }
+    })
+  }
+
+  login() {
+    this.user.login({
+      login: this.firstFormGroup.value.loginCtrl!,
+      password: this.loginFormGroup.value.passwordCtrl!,
+      name: ""
+    }, (result: any) => {
+      console.log(result)
+    })
+  }
+
+  signup() {
+    this.user.register({
+      login: this.firstFormGroup.value.loginCtrl!,
+      password: this.signupFormGroup.value.passwordCtrl!,
+      name: this.signupFormGroup.value.nameCtrl!
+    }, (result: any) => {
+
+    })
+  }
 }

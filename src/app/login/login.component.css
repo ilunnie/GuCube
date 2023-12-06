@@ -12,3 +12,31 @@
     box-shadow: 4px 4px 15px #202020;
     background-color: #282828;
 }
+
+mat-stepper {
+    background-color: #282828;
+}
+
+mat-form-field {
+    margin-bottom: -20px;
+}
+
+mat-error {
+    font-size: smaller;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+}
+
+.step_button {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mdc-floating-label--float-above .input_error {
+    color: #f44336;
+}

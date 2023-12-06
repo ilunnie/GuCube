@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; --mat-select-placeholder-text-color: aliceblue; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body { background-color: #282828; color: aliceblue; }
 h1, h2, h3 { margin: 0; display: inline; }
@@ -13,3 +13,21 @@ h1, h2, h3 { margin: 0; display: inline; }
     font-family: 'Blockbaq 2';
     src: url('assets/fonts/Blockbaq\ 2.ttf') format('opentype');
 }
+
+.mat-step-label, .mdc-button__label, .ng-tns-c1798928316-1 {
+    color: aliceblue !important;
+}
+
+.mat-step-icon-selected {
+    background-color: rgb(109, 53, 212);
+}
+
+.mdc-button, .mdc-text-field {
+    background-color: #424242 !important;
+}
+
+::ng-deep .mat-input-element::placeholder {
+    background-color: aliceblue !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
