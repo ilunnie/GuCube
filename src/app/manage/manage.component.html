@@ -5,9 +5,15 @@
         @if (showUnavailable || item.available) {
             <div class="card">
                 <div class="thumb">
-                    <img [src]="item.image">
+                    <img [src]="'assets/images/example.jfif'">
                 </div>
                 <div class="infos">
+                    <div class="infos_sub">
+                        <div>
+                            <label>Descrição</label>
+                            
+                        </div>
+                    </div>
                     <div class="infos_main">
                         <div style="display: flex; flex-direction: column;">
                             <h2 style="color: #b8b8b8;">{{item.name}}</h2>

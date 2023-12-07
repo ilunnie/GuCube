@@ -32,20 +32,31 @@ h2 {
     object-fit: cover;
 }
 
-.card:hover {
-    background-color: rgb(109, 53, 212);
-    grid-template-rows: 20% auto;
-}
 
 .infos {
     position: relative;
+}
+
+.infos_sub {
+    opacity: 0;
+    margin: 10px;
+    transition: 300ms;
 }
 
 .infos_main {
     position: absolute;
     margin: 10px;
     bottom: 0;
+    z-index: 1;
+}
 
+.card:hover {
+    background-color: rgb(109, 53, 212);
+    grid-template-rows: 20% auto;
+}
+
+.card:hover .infos_sub {
+    opacity: 1;
 }
 
 .invisible_input {

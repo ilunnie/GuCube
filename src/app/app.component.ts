@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { UserService } from './user.service';
 
 @Component({
     selector: 'app-root',
@@ -16,14 +17,34 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class AppComponent implements OnInit {
   title = 'GuCube';
-  isAdm = false;
+  managed = [];
   showFilter = false;
 
-  constructor(private router: Router) { }
+  constructor(
+    private user: UserService,
+    private router: Router) { }
 
   ngOnInit() {
-    if (this.getJwt() == null)
+    const jwt = this.getJwt()
+    if (jwt == null)
       this.goToLogin()
+    else {
+      this.user.getManaged({
+        token: jwt
+      }, (result: any) => {
+        if (result.ok == false) {
+          sessionStorage.removeItem("jwt");
+          this.goToLogin();
+        }
+        
+        this.managed = result
+        if (result.length > 0) {
+          this.router.navigate(['manage'])
+        } else {
+          this.router.navigate(['products'])
+        }
+      })
+    }
   }
 
   countries = ['Brasil', 'Argentina', 'Chile'];

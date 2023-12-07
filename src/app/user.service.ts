@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserData } from './dto/user-data';
 import { ApiService } from './api.service';
+import { JwtData } from './dto/jwt-data';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
 
   register(data: UserData, callback: any)
   {
-    this.http.post('user/register', data)
+    this.http.post('user/signup', data)
       .subscribe(
         response => {
           callback(response)
@@ -23,7 +24,6 @@ export class UserService {
 
   login(data: UserData, callback: any)
   {
-    console.log(data)
     this.http.post('user/login', data)
       .subscribe(
         response => {
@@ -33,5 +33,18 @@ export class UserService {
           callback(error)
         }
       )
+  }
+
+  getManaged(data: JwtData, callback: any)
+  {
+    this.http.post('user/managed', data)
+    .subscribe(
+      response => {
+        callback(response)
+      },
+      error => {
+        callback(error)
+      }
+    )
   }
 }

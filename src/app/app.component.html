@@ -4,7 +4,7 @@
         <img src="assets/images/GuCubeBlackLogo.svg" />
     </div>
     <div class="options">
-        @if(isAdm) {
+        @if(managed.length > 0) {
         <div class="text" (click)="navigateTo('/manage')">
             <h3>Gerenciar</h3>
         </div>
@@ -15,7 +15,7 @@
             <h3>Totem</h3>
         </div>
         }
-        @if(!isAdm) {
+        @else {
         <div class="filter">
             <button mat-fab (click)="clickFilter()">
                 <mat-icon>filter_list</mat-icon>

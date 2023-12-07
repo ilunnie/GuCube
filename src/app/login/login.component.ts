@@ -7,6 +7,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../user.service';
 import { ConfirmPassword } from '../MyValidators/isEqual';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -33,12 +34,13 @@ export class LoginComponent {
   signupFormGroup = this._formBuilder.group({
     passwordCtrl: ['', Validators.minLength(5)],
     confirmCtrl: ['', Validators.required],
-    nameCtrl: ['', Validators.required, Validators.pattern('[\\p{L} \u00C0-\u017F]+')],
+    nameCtrl: ['', [Validators.required, Validators.pattern('^[a-zA-Z\u00C0-\u017F\s]+$')]],
   }, { validators: ConfirmPassword });
   
   isNew = false;
 
   constructor(
+    private router: Router,
     private user: UserService,
     private _formBuilder: FormBuilder) {}
 
@@ -62,17 +64,32 @@ export class LoginComponent {
       password: this.loginFormGroup.value.passwordCtrl!,
       name: ""
     }, (result: any) => {
-      console.log(result)
+      if (result.token) {
+        sessionStorage.setItem('jwt', result.token);
+        this.router.navigate([''])
+      }
     })
   }
 
   signup() {
+    if (this.firstFormGroup.errors != null || this.signupFormGroup.errors != null) 
+      return;
     this.user.register({
       login: this.firstFormGroup.value.loginCtrl!,
       password: this.signupFormGroup.value.passwordCtrl!,
       name: this.signupFormGroup.value.nameCtrl!
     }, (result: any) => {
-
+      this.user.login({
+        login: this.firstFormGroup.value.loginCtrl!,
+        password: this.signupFormGroup.value.passwordCtrl!,
+        name: ""
+      }, (result: any) => {
+        console.log(result)
+        if (result.token) {
+          sessionStorage.setItem('jwt', result.token);
+          this.router.navigate([''])
+        }
+      })
     })
-  }
+  }  
 }
